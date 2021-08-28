@@ -1,10 +1,34 @@
 <template>
   <div id="nav">
+    <!-- our different router links -->
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link :to="{ name: 'About' }">About</router-link> |
+    <router-link :to="{ name: 'Jobs' }">Jobs</router-link>
   </div>
-  <router-view/>
+
+  <button @click="redirect">Redirect</button>
+  <button @click="back">Go back</button>
+  <button @click="forward">Go forward</button>
+  <!-- anything around this will appear on every single page -->
+  <!-- tag for route components to be dynamically injected depending on the route we visit -->
+  <router-view />
 </template>
+
+<script>
+export default {
+  methods: {
+    redirect() {
+      this.$router.push({ name: 'Home' });
+    },
+    back() {
+      this.$router.go(-1);
+    },
+    forward() {
+      this.$router.go(+1);
+    },
+  },
+};
+</script>
 
 <style>
 #app {
@@ -22,9 +46,19 @@
 #nav a {
   font-weight: bold;
   color: #2c3e50;
+  text-decoration: none;
+  border-radius: 5px;
 }
 
+/* style of an active link */
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: white;
+  background: purple;
+}
+button {
+  margin: 0 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
 }
 </style>
