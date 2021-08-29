@@ -27,7 +27,7 @@ export default {
     };
   },
   mounted() {
-    fetch('http://localhost:5000/api/prizes')
+    fetch('/api/prizes')
       .then((res) => res.json())
       .then((data) => (this.prizes = data))
       .catch((err) =>

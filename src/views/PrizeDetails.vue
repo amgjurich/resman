@@ -98,7 +98,7 @@ export default {
         description: this.prize.description,
       };
       console.log(patchBody);
-      fetch('http://localhost:5000/api/' + this.id, {
+      fetch('/api/' + this.id, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(patchBody),
@@ -109,7 +109,7 @@ export default {
       this.getPrizeInfo();
     },
     getPrizeInfo() {
-      fetch('http://localhost:5000/api/prize/' + this.id)
+      fetch('/api/prize/' + this.id)
         .then((res) => res.json())
         .then((data) => {
           // console.log('data in PrizeDetails,', data);
@@ -122,7 +122,7 @@ export default {
   },
 
   mounted() {
-    fetch('http://localhost:5000/api/prize/' + this.id)
+    fetch('/api/prize/' + this.id)
       .then((res) => res.json())
       .then((data) => {
         // console.log('data in PrizeDetails,', data);
@@ -133,7 +133,7 @@ export default {
       );
   },
   updated() {
-    fetch('http://localhost:5000/api/prize/' + this.id)
+    fetch('/api/prize/' + this.id)
       .then((res) => res.json())
       .then((data) => {
         // console.log('data in PrizeDetails,', data);
