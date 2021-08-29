@@ -3,33 +3,46 @@ const mongodb = require('mongodb');
 const router = express.Router();
 
 router.get('/prizes', async (req, res) => {
-  console.log('in get request and I worked');
-  const info = await loadPrizeCollection();
-  return res.send(await info.find({}).toArray());
+  try {
+    console.log('in get request and I worked');
+    const info = await loadPrizeCollection();
+    return res.send(await info.find({}).toArray());
+  } catch (err) {
+    console.log('error in patch request', err);
+    res.status(500).send(err);
+  }
 });
 
 router.get('/prize/:id', async (req, res) => {
   console.log('in single get request');
   console.log('req id', req.params.id);
   const info = await loadPrizeCollection();
-
-  return res.send(
-    await info.find({ _id: new mongodb.ObjectId(req.params.id) }).toArray()
-  );
+  try {
+    return res.send(
+      await info.find({ _id: new mongodb.ObjectId(req.params.id) }).toArray()
+    );
+  } catch (err) {
+    console.log('error in patch request', err);
+    res.status(500).send(err);
+  }
 });
 
 router.post('/', async (req, res) => {
   console.log('in post request');
   const info = await loadPrizeCollection();
-
-  await info.insertOne({
-    name: req.body.name,
-    description: req.body.description,
-    image_url: req.body.image_url,
-    quantity: req.body.quantity,
-    createdAt: new Date(),
-  });
-  return res.status(201).send('posted!');
+  try {
+    await info.insertOne({
+      name: req.body.name,
+      description: req.body.description,
+      image_url: req.body.image_url,
+      quantity: req.body.quantity,
+      createdAt: new Date(),
+    });
+    return res.status(201).send('posted!');
+  } catch (err) {
+    console.log('error in patch request', err);
+    res.status(500).send(err);
+  }
 });
 
 //find one and update - access the current quantity in the component and then send the request with subtracted one. then mount the component with updated quantity info
@@ -43,17 +56,22 @@ router.patch('/:id', async (req, res) => {
   console.log(req.body.quantity);
 
   // let _id = new mongodb.ObjectId(req.params.id);
-  await info.findOneAndReplace(
-    { _id: new mongodb.ObjectId(req.params.id) },
-    {
-      quantity: req.body.quantity,
-      name: req.body.name,
-      image_url: req.body.image_url,
-      createdAt: req.body.createdAt,
-      description: req.body.description,
-    }
-  );
-  res.status(200).send('updated');
+  try {
+    await info.findOneAndReplace(
+      { _id: new mongodb.ObjectId(req.params.id) },
+      {
+        quantity: req.body.quantity,
+        name: req.body.name,
+        image_url: req.body.image_url,
+        createdAt: req.body.createdAt,
+        description: req.body.description,
+      }
+    );
+    res.status(200).send('updated');
+  } catch (err) {
+    console.log('error in patch request', err);
+    res.status(500).send(err);
+  }
 });
 
 router.delete('/:id', async (req, res) => {
