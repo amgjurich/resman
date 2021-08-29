@@ -17,7 +17,7 @@ if (process.env.NODE_ENV === 'production') {
 
   console.log('dirname', __dirname);
 
-  app.get(/.*/, function(req, res) {
+  app.get('*', (req, res) => {
     res.sendFile(__dirname + '/dist/index.html');
   });
 }
