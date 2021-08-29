@@ -132,7 +132,15 @@ export default {
       );
   },
   updated() {
-    this.getPrizeInfo();
+    fetch('http://localhost:5000/api/prize/' + this.id)
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log('data in PrizeDetails,', data);
+        this.prize = data[0];
+      })
+      .catch((err) =>
+        console.log('error in fetch request in prize', err.message)
+      );
   },
 };
 </script>
