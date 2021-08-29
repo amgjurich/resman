@@ -7,7 +7,7 @@ import NotFound from '../views/NotFound.vue';
 
 const routes = [
   {
-    path: '/prizes',
+    path: '/',
     name: 'Prizes',
     component: Prizes,
   },
