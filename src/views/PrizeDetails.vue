@@ -3,9 +3,10 @@
     <h1>{{ prize.name }}</h1>
     <p>The prize id is {{ id }}</p>
     <p>Description: {{ prize.description }}</p>
+    <img :alt="prize.name" :src="prize.image_url" />
+    <p>Quantity: {{ prize.quantity }}</p>
   </div>
   <div v-else>
-    <p>{{ id }}</p>
     <p>Loading prize details...</p>
   </div>
 </template>
@@ -20,8 +21,6 @@ export default {
   },
 
   mounted() {
-    let url = 'http://localhost:5000/api/prize/' + this.id;
-    console.log(url);
     fetch('http://localhost:5000/api/prize/' + this.id)
       .then((res) => res.json())
       .then((data) => {

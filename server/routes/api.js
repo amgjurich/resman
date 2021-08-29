@@ -31,6 +31,8 @@ router.post('/', async (req, res) => {
   return res.status(201).send('posted!');
 });
 
+//find one and update - access the current quantity in the component and then send the request with subtracted one. then mount the component with updated quantity info
+
 //find one and update functionality and query
 //grab id
 // router.patch('/:id', async (req, res) => {
