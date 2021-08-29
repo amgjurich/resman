@@ -2,17 +2,26 @@ const express = require('express');
 const mongodb = require('mongodb');
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/prizes', async (req, res) => {
   console.log('in get request and I worked');
   const info = await loadPrizeCollection();
   return res.send(await info.find({}).toArray());
+});
+
+router.get('/prize/:id', async (req, res) => {
+  console.log('req id', req.params.id);
+  const info = await loadPrizeCollection();
+
+  return res.send(
+    await info.find({ _id: new mongodb.ObjectId(req.params.id) }).toArray()
+  );
 });
 
 router.post('/', async (req, res) => {
   console.log('in post request');
   const info = await loadPrizeCollection();
 
-  let posted = await info.insertOne({
+  await info.insertOne({
     name: req.body.name,
     description: req.body.description,
     image_url: req.body.image_url,

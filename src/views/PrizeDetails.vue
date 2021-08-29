@@ -1,28 +1,35 @@
 <template>
-  <div v-if="job">
-    <h1>{{ job.title }}</h1>
-    <p>The job id is {{ id }}</p>
-    <p>Description: {{ job.details }}</p>
+  <div v-if="prize">
+    <h1>{{ prize.name }}</h1>
+    <p>The prize id is {{ id }}</p>
+    <p>Description: {{ prize.description }}</p>
   </div>
   <div v-else>
-    <p>Loading job details...</p>
+    <p>{{ id }}</p>
+    <p>Loading prize details...</p>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['id', 'details'],
+  props: ['id'],
   data() {
     return {
-      job: null,
+      prize: null,
     };
   },
+
   mounted() {
-    fetch('http://localhost:3000/jobs/' + this.id)
+    let url = 'http://localhost:5000/api/prize/' + this.id;
+    console.log(url);
+    fetch('http://localhost:5000/api/prize/' + this.id)
       .then((res) => res.json())
-      .then((data) => (this.job = data))
+      .then((data) => {
+        console.log('data in PrizeDetails,', data);
+        this.prize = data[0];
+      })
       .catch((err) =>
-        console.log('error in fetch request in jobs', err.message)
+        console.log('error in fetch request in prize', err.message)
       );
   },
 };
