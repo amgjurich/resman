@@ -3,15 +3,22 @@ const cors = require('cors');
 const api = require('./routes/api.js');
 const { urlencoded } = require('express');
 
+const PORT = process.env.PORT || 5000;
+
 const app = express();
 
 //Middleware for dependencies
+app.use(express.static(__dirname + '/dist'));
+
+//this is what's changing everything on my local computer
+app.get(/.*/, function(req, res) {
+  res.sendFile(__dirname + '/dist/index.html');
+});
+
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
 app.use(cors());
 
 app.use('/api', api);
-
-const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => console.log(`Server listening on port ${PORT}`));

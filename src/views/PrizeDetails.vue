@@ -275,7 +275,4 @@ img {
 button {
   cursor: pointer;
 }
-
-#approved-container {
-}
 </style>
