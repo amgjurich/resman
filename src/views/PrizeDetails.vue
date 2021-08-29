@@ -88,6 +88,7 @@ export default {
     },
     changeQuantity() {
       console.log('invoked');
+      if (this.prize.quantity < 1) return;
       let newQuantity = this.prize.quantity - 1;
       let patchBody = {
         quantity: newQuantity,
