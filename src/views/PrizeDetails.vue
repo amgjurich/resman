@@ -84,8 +84,10 @@ export default {
     approve() {
       this.approved = true;
       this.visible = false;
+      this.changeQuantity();
     },
     changeQuantity() {
+      console.log('invoked');
       let newQuantity = this.prize.quantity - 1;
       let patchBody = {
         quantity: newQuantity,
@@ -101,8 +103,20 @@ export default {
         body: JSON.stringify(patchBody),
       })
         .then((res) => res.json())
-        .then((data) => console.log(data))
+        // .then((data) => console.log(data))
         .catch((err) => console.log('error in patch request', err));
+      this.getPrizeInfo();
+    },
+    getPrizeInfo() {
+      fetch('http://localhost:5000/api/prize/' + this.id)
+        .then((res) => res.json())
+        .then((data) => {
+          // console.log('data in PrizeDetails,', data);
+          this.prize = data[0];
+        })
+        .catch((err) =>
+          console.log('error in fetch request in prize', err.message)
+        );
     },
   },
 
@@ -116,6 +130,9 @@ export default {
       .catch((err) =>
         console.log('error in fetch request in prize', err.message)
       );
+  },
+  updated() {
+    this.getPrizeInfo();
   },
 };
 </script>
