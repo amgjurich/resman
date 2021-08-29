@@ -9,6 +9,7 @@ router.get('/prizes', async (req, res) => {
 });
 
 router.get('/prize/:id', async (req, res) => {
+  console.log('in single get request');
   console.log('req id', req.params.id);
   const info = await loadPrizeCollection();
 
@@ -35,17 +36,25 @@ router.post('/', async (req, res) => {
 
 //find one and update functionality and query
 //grab id
-// router.patch('/:id', async (req, res) => {
-//   console.log('in patch request');
-//   const info = await loadPostCollection();
-//   console.log(req.params.id);
-//   // let _id = new mongodb.ObjectId(req.params.id);
-//   await info.findOneAndDelete(
-//     { _id: new mongodb.ObjectId(req.params.id) },
-//     { quantity: 3 }
-//   );
-//   res.status(200).send('updated');
-// });
+router.patch('/:id', async (req, res) => {
+  console.log('in patch request');
+  const info = await loadPrizeCollection();
+  console.log(req.params.id);
+  console.log(req.body.quantity);
+
+  // let _id = new mongodb.ObjectId(req.params.id);
+  await info.findOneAndReplace(
+    { _id: new mongodb.ObjectId(req.params.id) },
+    {
+      quantity: req.body.quantity,
+      name: req.body.name,
+      image_url: req.body.image_url,
+      createdAt: req.body.createdAt,
+      description: req.body.description,
+    }
+  );
+  res.status(200).send('updated');
+});
 
 router.delete('/:id', async (req, res) => {
   console.log('in delete request');
