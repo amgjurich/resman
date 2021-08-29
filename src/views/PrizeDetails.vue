@@ -24,7 +24,7 @@ export default {
     fetch('http://localhost:5000/api/prize/' + this.id)
       .then((res) => res.json())
       .then((data) => {
-        console.log('data in PrizeDetails,', data);
+        // console.log('data in PrizeDetails,', data);
         this.prize = data[0];
       })
       .catch((err) =>
