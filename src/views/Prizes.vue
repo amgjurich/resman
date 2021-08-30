@@ -31,7 +31,7 @@ export default {
     fetch('/api/prizes')
       .then((res) => {
         console.log('res', res);
-        res.json();
+        return res.json();
       })
       .then((data) => {
         console.log('my data in fetch', data);

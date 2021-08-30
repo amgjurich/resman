@@ -6,14 +6,12 @@ router.get('/prizes', async (req, res) => {
   try {
     console.log('in get request and I worked');
     const info = await loadPrizeCollection();
-    return res.send(await info.find({}).toArray());
+    const data = await info.find({}).toArray();
+    console.log('data in prized get request backend', data);
+    return res.status(200).send(data);
   } catch (err) {
     console.log('error in patch request', err);
     res.status(500).send(err);
-  } finally {
-    // console.log('closing conneciton');
-    // console.log(info);
-    // info.close();
   }
 });
 
