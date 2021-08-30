@@ -1,18 +1,18 @@
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
 const api = require('./server/routes/api.js');
 const { urlencoded } = require('express');
 
+//parsers
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(urlencoded({ extended: true }));
 
-//Middleware for dependencies
+//route for api calls
 app.use('/api', api);
 
-//this is what's changing everything on my local computer
+//production environment setup
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(__dirname + '/dist/'));
 

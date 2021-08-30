@@ -7,7 +7,6 @@
           <img alt="Prize" :src="prize.image_url" />
           <div class="description-container">
             <p>{{ prize.name }}</p>
-
             <router-link
               class="router-link"
               :to="{ name: 'PrizeDetails', params: { id: prize._id } }"
@@ -28,6 +27,8 @@ export default {
       prizes: [],
     };
   },
+
+  // fetches prizes from db on load
   mounted() {
     console.log('mounted prizes');
     fetch('/api/prizes')

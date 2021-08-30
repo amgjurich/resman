@@ -72,19 +72,24 @@ export default {
     };
   },
   methods: {
+    //show the lightbox element
     show() {
       console.log('clicked');
       this.visible = true;
     },
+
+    //hide lightbox element and approve lightbox element
     hide() {
       this.visible = false;
       this.approved = false;
     },
+    //show approve lightbox
     approve() {
       this.approved = true;
       this.visible = false;
       this.changeQuantity();
     },
+    //patch request to db to update quantity
     changeQuantity() {
       console.log('invoked');
       if (this.prize.quantity < 1) return;
@@ -107,6 +112,7 @@ export default {
         .catch((err) => console.log('error in patch request', err));
       this.getPrizeInfo();
     },
+    //id specific get request
     getPrizeInfo() {
       fetch('/api/prize/' + this.id)
         .then((res) => res.json())
@@ -131,6 +137,7 @@ export default {
         console.log('error in fetch request in prize', err.message)
       );
   },
+  //change quantity on update
   updated() {
     fetch('/api/prize/' + this.id)
       .then((res) => res.json())
