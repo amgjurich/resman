@@ -12,6 +12,8 @@ router.get('/prizes', async (req, res) => {
   } catch (err) {
     console.log('error in patch request', err);
     res.status(500).send(err);
+  } finally {
+    closePrizeCollection();
   }
 });
 
@@ -27,8 +29,7 @@ router.get('/prize/:id', async (req, res) => {
     console.log('error in patch request', err);
     res.status(500).send(err);
   } finally {
-    console.log('closing conneciton');
-    info.close();
+    closePrizeCollection();
   }
 });
 
@@ -48,8 +49,7 @@ router.post('/', async (req, res) => {
     console.log('error in patch request', err);
     res.status(500).send(err);
   } finally {
-    console.log('closing conneciton');
-    info.close();
+    closePrizeCollection();
   }
 });
 
@@ -80,8 +80,7 @@ router.patch('/:id', async (req, res) => {
     console.log('error in patch request', err);
     res.status(500).send(err);
   } finally {
-    console.log('closing connection');
-    info.close();
+    closePrizeCollection();
   }
 });
 
@@ -97,8 +96,7 @@ router.delete('/:id', async (req, res) => {
   } catch (err) {
     console.log('error in delete request', err);
   } finally {
-    console.log('closing conneciton');
-    info.close();
+    closePrizeCollection();
   }
 });
 
@@ -106,18 +104,22 @@ const connectionURI =
   process.env.MONGODB_URI ||
   'mongodb+srv://abigailgjurich123:abigailgjurich123@vue-spa.lflia.mongodb.net/vue-spa?retryWrites=true&w=majority';
 
+let client;
 let loadPrizeCollection = async () => {
-  let client;
   try {
     console.log('in query');
     client = await mongodb.MongoClient.connect(connectionURI, {
       useNewUrlParser: true,
     });
-    //   console.log('connected to database');
+
     return client.db('vue-spa').collection('vue-spa');
   } catch (err) {
     console.log(err);
   }
 };
 
+let closePrizeCollection = async () => {
+  console.log('closing database connection');
+  return client.close();
+};
 module.exports = router;
