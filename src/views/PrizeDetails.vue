@@ -244,11 +244,12 @@ img {
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  padding-bottom: 3%;
+  padding-bottom: 5%;
 }
 .clarify-container {
   display: flex;
   width: 100%;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   font-family: 'Source Sans Pro', sans-serif;
@@ -280,11 +281,12 @@ img {
   display: flex;
   justify-content: flex-end;
   padding-top: 3%;
+  margin-top: 5%;
 }
 .lightbox-image-container img {
   border: 10px;
   border-color: red;
-  width: 50%;
+  width: 45%;
   border-radius: 50%;
 }
 .clarifying-buttons {
