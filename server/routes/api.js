@@ -63,7 +63,6 @@ router.patch('/:id', async (req, res) => {
   console.log(req.params.id);
   console.log(req.body.quantity);
 
-  // let _id = new mongodb.ObjectId(req.params.id);
   try {
     await info.findOneAndReplace(
       { _id: new mongodb.ObjectId(req.params.id) },

@@ -61,13 +61,7 @@
 </template>
 
 <script>
-import Lightbox from '../components/Lightbox.vue';
-// import Vue from 'vue';
-// import Lightbox from 'vue-easy-lightbox';
-
-// Vue.use(Lightbox);
 export default {
-  components: { Lightbox },
   props: ['id'],
   data() {
     return {
@@ -157,9 +151,9 @@ export default {
   background-color: rgb(254, 207, 8);
   border-radius: 45px;
   border: none;
-  /* width: 100%; */
+
   text-decoration: none;
-  /* padding: 15px; */
+
   cursor: pointer;
   color: black;
   padding-right: 20%;
@@ -192,7 +186,7 @@ export default {
   justify-content: flex-start;
   align-items: flex-start;
   width: 300px;
-  /* height: 200px; */
+
   padding-left: 2%;
   padding-right: 7%;
   padding-top: 2%;
@@ -260,7 +254,7 @@ img {
   padding-top: 5%;
   border: none;
   background: none;
-  /* width: 100px; */
+
   font-family: 'Raleway', sans-serif;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 50px;
@@ -306,9 +300,7 @@ img {
   background-color: rgb(254, 207, 8);
   border-radius: 45px;
   border: none;
-  /* width: 100%; */
   text-decoration: none;
-  /* padding: 15px; */
   cursor: pointer;
   color: black;
   padding-right: 5%;

@@ -113,12 +113,8 @@ h1 {
   grid-row-gap: 6%;
   grid-template-rows: repeat(2, 1fr);
   grid-template-columns: 1fr 1fr 1fr;
-  /* grid-template-areas:
-    'prize' 'prize' 'prize'
-    'prize' 'prize' 'prize'; */
   padding-left: 7%;
   padding-right: 7%;
   padding-bottom: 10%;
-  /* margin-bottom: 5%; */
 }
 </style>
