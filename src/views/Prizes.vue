@@ -29,7 +29,10 @@ export default {
   mounted() {
     console.log('mounted prizes');
     fetch('/api/prizes')
-      .then((res) => res.json())
+      .then((res) => {
+        console.log('res', res);
+        res.json();
+      })
       .then((data) => (this.prizes = data))
       .catch((err) =>
         console.log('error in fetch request in prizes', err.message)
