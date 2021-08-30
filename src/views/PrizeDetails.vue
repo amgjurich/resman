@@ -5,8 +5,10 @@
       <div class="lightbox-container" v-if="visible">
         <div class="lightbox-background">
           <div class="clarify-container">
+            <div class="x-button">
+              <button @click="hide">X</button>
+            </div>
             <h1>Are you sure?</h1>
-            <button @click="hide">X</button>
           </div>
           <div class="lightbox-image-container">
             <img :alt="prize.name" :src="prize.image_url" />
@@ -20,13 +22,16 @@
       </div>
       <!-- *****************lightbox*********************** -->
       <div id="approved-container" class="lightbox-container" v-if="approved">
-        <div class="lightbox-background">
+        <div class="approved-lightbox-background">
           <div class="clarify-container">
-            <h1>Congratulations</h1>
-            <button @click="hide">X</button>
+            <div class="x-button">
+              <button @click="hide">X</button>
+            </div>
+            <h1>Congratulations!</h1>
           </div>
-          <p>You redeemed</p>
-          <p>{{ prize.name }}</p>
+          You redeemed
+          <br />
+          {{ prize.name }}.
           <div class="clarifying-buttons">
             <button @click="hide">More Prizes</button>
           </div>
@@ -145,7 +150,9 @@ export default {
   },
 };
 </script>
+
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
 .explanation-container button {
   background-color: rgb(254, 207, 8);
   border-radius: 45px;
@@ -159,6 +166,12 @@ export default {
   padding-left: 20%;
   margin-top: 5%;
   margin-bottom: 5%;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 15px;
+  font-weight: bold;
+}
+.explanation-container h1 {
+  font-family: 'Open Sans', sans-serif;
 }
 .prize-page-container {
   padding-top: 5%;
@@ -178,6 +191,8 @@ export default {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 300px;
+  /* height: 200px; */
   padding-left: 2%;
   padding-right: 7%;
   padding-top: 2%;
@@ -198,7 +213,7 @@ hr {
   height: 1px;
 }
 img {
-  width: 40%;
+  width: 500px;
   padding-right: 5%;
 }
 
@@ -220,29 +235,51 @@ img {
 .lightbox-background {
   position: fixed;
   top: 10%;
-  width: 60vw;
-  height: 50vw;
+  width: 600px;
+  height: 500px;
   background: white;
   color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
+  padding-bottom: 3%;
 }
 .clarify-container {
   display: flex;
   width: 100%;
-  /* background: yellow; */
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 300px;
 }
+
 .clarify-container button {
-  margin-left: 15vw;
+  padding-top: 5%;
   border: none;
-  background: white;
+  background: none;
+  /* width: 100px; */
+  font-family: 'Raleway', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 50px;
+}
+.clarify-container h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 30px;
+}
+
+.lightbox-background p {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 25px;
 }
 #cancel {
   background: rgb(243, 243, 243);
+}
+.x-button {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 3%;
 }
 .lightbox-image-container img {
   border: 10px;
@@ -256,6 +293,12 @@ img {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  font-family: 'Source Sans Pro', sans-serif;
+  padding-top: 5%;
+  border: none;
+  background: none;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 50px;
 }
 .clarifying-buttons button {
   background-color: rgb(254, 207, 8);
@@ -274,5 +317,19 @@ img {
 
 button {
   cursor: pointer;
+}
+.approved-lightbox-background {
+  position: fixed;
+  top: 10%;
+  width: 600px;
+  height: 300px;
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  padding-bottom: 3%;
 }
 </style>

@@ -33,6 +33,20 @@ export default {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@800&display=swap');
+
+.logo {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 30px;
+  margin: 0px;
+}
+.name {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  margin: 0px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -71,12 +85,22 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 20px;
 }
 .logo-container {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: flex-start;
+  padding: 1%;
 }
+/* .logo-container img {
+  height: 10%;
+  border-radius: 50%;
+  position: relative;
+  /* position: absolute; */
+
 .terms-container {
   color: white;
   background: black;
