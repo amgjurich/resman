@@ -15,9 +15,7 @@ app.use('/api', api);
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static(__dirname + '/dist/'));
 
-  console.log('dirname', __dirname);
-
-  app.get('*', (req, res) => {
+  app.get(/.*/, (req, res) => {
     res.sendFile(__dirname + '/dist/index.html');
   });
 }
