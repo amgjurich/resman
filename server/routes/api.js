@@ -10,6 +10,10 @@ router.get('/prizes', async (req, res) => {
   } catch (err) {
     console.log('error in patch request', err);
     res.status(500).send(err);
+  } finally {
+    // console.log('closing conneciton');
+    // console.log(info);
+    // info.close();
   }
 });
 
@@ -24,6 +28,9 @@ router.get('/prize/:id', async (req, res) => {
   } catch (err) {
     console.log('error in patch request', err);
     res.status(500).send(err);
+  } finally {
+    console.log('closing conneciton');
+    info.close();
   }
 });
 
@@ -42,6 +49,9 @@ router.post('/', async (req, res) => {
   } catch (err) {
     console.log('error in patch request', err);
     res.status(500).send(err);
+  } finally {
+    console.log('closing conneciton');
+    info.close();
   }
 });
 
@@ -71,6 +81,9 @@ router.patch('/:id', async (req, res) => {
   } catch (err) {
     console.log('error in patch request', err);
     res.status(500).send(err);
+  } finally {
+    console.log('closing connection');
+    info.close();
   }
 });
 
@@ -85,17 +98,27 @@ router.delete('/:id', async (req, res) => {
     res.status(200).send('deleted');
   } catch (err) {
     console.log('error in delete request', err);
+  } finally {
+    console.log('closing conneciton');
+    info.close();
   }
 });
 
 const connectionURI =
   'mongodb+srv://abigailgjurich123:abigailgjurich123@vue-spa.lflia.mongodb.net/vue-spa?retryWrites=true&w=majority';
+
 let loadPrizeCollection = async () => {
-  const client = await mongodb.MongoClient.connect(connectionURI, {
-    useNewUrlParser: true,
-  });
-  //   console.log('connected to database');
-  return client.db('vue-spa').collection('vue-spa');
+  let client;
+  try {
+    console.log('in query');
+    client = await mongodb.MongoClient.connect(connectionURI, {
+      useNewUrlParser: true,
+    });
+    //   console.log('connected to database');
+    return client.db('vue-spa').collection('vue-spa');
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 module.exports = router;
