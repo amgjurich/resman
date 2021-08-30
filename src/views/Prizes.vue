@@ -33,7 +33,10 @@ export default {
         console.log('res', res);
         res.json();
       })
-      .then((data) => (this.prizes = data))
+      .then((data) => {
+        console.log('my data in fetch', data);
+        this.prizes = data;
+      })
       .catch((err) =>
         console.log('error in fetch request in prizes', err.message)
       );
