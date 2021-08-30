@@ -103,6 +103,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 const connectionURI =
+  process.env.MONGODB_URI ||
   'mongodb+srv://abigailgjurich123:abigailgjurich123@vue-spa.lflia.mongodb.net/vue-spa?retryWrites=true&w=majority';
 
 let loadPrizeCollection = async () => {

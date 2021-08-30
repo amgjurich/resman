@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
 const api = require('./server/routes/api.js');
 const { urlencoded } = require('express');
 
